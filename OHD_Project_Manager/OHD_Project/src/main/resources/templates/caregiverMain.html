@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OHD HomePage</title>
+    <!-- <link rel="stylesheet" type="text/css" href="css/style.css" /> -->
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+            font-family: "fangsong";
+        }
+
+        header {
+            background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+            url(https://pic4.zhimg.com/v2-bb86ab301afb08d9df2ba91cf3024f3b_r.jpg);
+            /*url(https://www.2008php.com/2011_Website_appreciate/2011-11-21/20111121023703.jpg);*/
+            height: 100vh;
+            background-size: cover;
+            background-position: center;
+        }
+
+        ul {
+            float: right;
+            list-style-type: none;
+            margin: 15px;
+        }
+
+        ul li {
+            display: inline-block;
+        }
+
+        ul li a {
+            text-decoration: none;
+            color: #fff;
+            padding: 5px 20px;
+            border: 1px solid transparent;
+            transition: .6s ease;
+            border-radius: 20px;
+        }
+
+        ul li a:hover {
+            background-color: #fff;
+            color: #000;
+        }
+
+        ul li.active a {
+            background-color: #fff;
+            color: #000;
+        }
+
+        .form {
+            margin-top: 30px;
+            margin-left: 60px;
+        }
+
+        /*.button1 {*/
+        /*    position: absolute;*/
+        /*    top: 50%;*/
+        /*    left: 50%;*/
+        /*    transform: translate(-50%, -50%);*/
+        /*    font-size: 20px;*/
+        /*}*/
+
+        .mainb {
+
+            line-height: 2;
+            font-size: 20px;
+            width: 500px;
+            height: 650px;
+            box-shadow: 0 5px 20px 0 #16133a;
+            background-color: #ffffff;
+            border-radius: 10px;
+            position: absolute;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
+            margin: auto;
+        }
+
+        .mainc {
+
+            overflow-y: scroll; /*只是y方向*/
+            line-height: 0.5;
+            font-size: 20px;
+            width: 225px;
+            height: 500px;
+            box-shadow: 0 5px 20px 0 #16133a;
+            /*background-color: #ff9b5d;*/
+            /*font: #2aab;*/
+            border-radius: 10px;
+            top: 6%;
+            left: 17%;
+
+            position: absolute;
+            margin: auto;
+            background-image: url("../static/img/Panel.png");
+        }
+
+        .maind {
+            overflow-y: scroll; /*只是y方向*/
+            line-height: 2;
+            font-size: 20px;
+            width: 300px;
+            height: 600px;
+            box-shadow: 0 5px 20px 0 #16133a;
+            background-color: #ffffff;
+            border-radius: 10px;
+            top: 6%;
+            left: 68%;
+            background-image: url("../static/img/Panel2.png");
+            position: absolute;
+            margin: auto;
+        }
+
+        .title h1 {
+            color: #fff;
+            font-size: 70px;
+            font-family: Century Gothic;
+        }
+
+        .main h2 {
+            color: #205fb2;
+            margin-left: 150px;
+        }
+
+        .form {
+            margin-top: 30px;
+            margin-left: 60px;
+        }
+
+        .form input {
+            /*line-height: 10;*/
+            width: 300px;
+            height: 25px;
+            border: 1px solid lightgray;
+            outline: none; /*输入内容时不显示边框*/
+        }
+
+        .form button {
+            width: 150px;
+            height: 30px;
+            color: white;
+            background-color: #edbb97;
+            border-style: none;
+            border-radius: 5px;
+            font-size: 15px;
+            margin-top: 5px;
+            margin-left: 2px;
+            outline: none;
+            cursor: pointer; /*光标放到上面有小手*/
+
+        }
+
+        .button1 {
+            width: 220px;
+            height: 100px;
+            color: #f1e1e1;
+            background-color: #e56858;
+            border-style: none;
+            border-radius: 5px;
+            font-size: 15px;
+            margin-top: 5px;
+            margin-right: 2px;
+            outline: none;
+            cursor: pointer; /*光标放到上面有小手*/
+
+        }
+
+        .form a.btn {
+            /*display: block;*/
+            margin-bottom: 5px;
+            margin-right: 5px;
+            /*text-align: center;*/
+            /*background-color: #848afd;*/
+            /*background-image: url(../static/img/button1.png);*/
+        }
+
+        .form a.btn img {
+            max-width: 90%;
+            height: auto;
+            border: 2px solid #f1633b; /* Border color */
+            border-radius: 5px; /* Border radius */
+            /*margin-bottom: 5px; !* Adjust spacing *!*/
+        }
+
+        .f {
+            color: white;
+        }
+    </style>
+</head>
+<body>
+<header>
+    <div class="main">
+        <ul>
+            <li class="active"><a href="/">首页</a></li>
+            <li><a href="https://blog.csdn.net" target="_blank"><span style="color: #ff965d;">C</span>SDN官网</a></li>
+            <li><a class="btn btn-primary btn-lg" href="/users/register" role="button"><span
+                    style="color:#ff625d">用户注册</span></a>
+            </li>
+            <li><a class="btn btn-primary btn-lg" href="/users/login" role="button"><span
+                    style="color:#fdae84">用户登陆</span></a>
+            </li>
+            <li><a class="btn btn-primary btn-lg" href="/caregivers/register" role="button"><span style="color:#ff965d">护工注册</span></a>
+            </li>
+            <li><a class="btn btn-primary btn-lg" href="/caregivers/login" role="button"><span style="color:#fda484">护工登陆</span></a>
+            </li>
+            <li><a class="btn btn-primary btn-lg" href="/caregivers/login" role="button" onsubmit="logout()"><span
+                    style="color:#f4573c">护工登出</span></a>
+            </li>
+
+        </ul>
+    </div>
+    <div class="container text-center">
+        <div class="ink">
+            <h1 class="display-4">Home Page</h1>
+        </div>
+
+    </div>
+    <!-- 在线列表板块 -->
+    <div class="mainc">
+        <div class="container mt-5">
+            <div class="row justify-content-center">
+                <div class="col-md-6">
+                    <div class="form">
+                        <div class="card-body">
+                            <div>
+                                <label class="f">在线列表</label>
+                            </div>
+                            <ul id="onlineCaregiversList"></ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div>
+        <div class="mainb">
+            <div class="container mt-5">
+                <div class="row justify-content-center">
+                    <div class="col-md-6">
+                        <div class="form">
+                            <div class="card-body">
+                                <h2>Welcome</h2>
+                                <div>
+                                    <div class="title">
+
+                                        Let life be beautiful like summer flowers and death like autumn leaves。
+                                    </div>
+                                    <div>
+                                        <!-- Move the buttons here -->
+                                        <a class="btn btn-primary btn-lg" href="/caregivers/caregiverData"
+                                           role="button">
+                                            <img src="../static/img/Caregiver.png" style=max-width:100px
+                                                 alt="View Statistics"/>
+                                        </a>
+                                        <a class="btn btn-primary btn-lg" href="/detectors/add" role="button">
+                                            <img src="../static/img/AddDetecter.png" style=max-width:100px
+                                                 alt="Add Detector"/>
+                                        </a>
+                                        <a class="btn btn-primary btn-lg" href="/detectors/del" role="button">
+                                            <img src="../static/img/DelDetecter.png" style=max-width:100px
+                                                 alt="Delete Detector"/>
+                                        </a>
+                                        <a class="btn btn-primary btn-lg" href="/caregivers/data" role="button">
+                                            <img src="../static/img/Data.png" style=max-width:100px
+                                                 alt="View Statistics"/>
+                                        </a>
+                                        <a class="btn btn-primary btn-lg" role="button" onclick="setPath()">
+                                            <img src="../static/img/LogPath.png" style=max-width:100px
+                                                 alt="UpdatePath"/>
+                                        </a>
+
+<!--                                        <button type="button" class="button" onclick="editSelfInfo_roomNumber()">-->
+<!--                                            编辑-->
+<!--                                        </button>-->
+                                    </div>
+                                    <div>
+
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div>
+        <div class="maind">
+            <div class="container mt-5">
+                <div class="row justify-content-center">
+                    <div class="col-md-6">
+                        <div class="form">
+                            <div class="card-body">
+                                <div>
+                                    <label class="f">消息列表</label>
+                                </div>
+                                <ul id="messageList"></ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+<!-- Bootstrap JS and jQuery -->
+<script src="/static/js/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.11.8/umd/popper.min.js"></script>
+<script src="/static/js/distpicker.min.js"></script>
+
+<!-- 在页面底部添加 -->
+<script>
+
+    function setPath() {
+        let path = prompt("日志生成路径：");
+        let formData = {
+            path: path
+        };
+        $.ajax({
+            url: "/records/setPath",
+            type: "POST",
+            data: JSON.stringify(formData),
+            contentType: "application/json",
+            success: function (data) {
+                alert("修改成功");
+                location.href = "/caregivers/caregiverMain";
+            },
+            error: function (jqXHR, textStatus, errorThrown) {
+                console.error("Error:", textStatus, errorThrown);
+                // 处理错误
+            }
+        });
+    }
+
+    function logout() {
+        let data = sessionStorage.getItem("Caregiver");
+        if (data) {
+            data = JSON.parse(data);
+        }
+        let formData = {
+            responsibleGroupId: data.responsibleGroupId
+        }
+        $.ajax({
+            url: "/Caregivers/logout",
+            type: "POST",
+            data: JSON.stringify(formData),
+            contentType: "application/json",
+
+            success: function (data) {
+                if (data.code === 1001) {
+                    console.log(data.data)
+                    alert("成功登出");
+                    // sessionStorage.setItem("Caregiver", JSON.stringify(data.data))
+                    // 跳转到指定的 URL 地址
+                    location.href = "/";
+                } else {
+                    alert("错误");
+                }
+            },
+            error: function (jqXHR, textStatus, errorThrown) {
+                console.error("Error:", textStatus, errorThrown);
+                // 处理错误
+            }
+        });
+    }
+
+    function getOnlineCaregivers() {
+        $.get("/OnlineCaregivers/onlineList", function (data) {
+            const onlineCaregiversList = $("#onlineCaregiversList");
+            onlineCaregiversList.empty();
+
+            data.data.forEach(caregiver => {
+                const button = $(`<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#caregiverModal">${caregiver.name}</button>`);
+                button.click(function () {
+                    // $.get(`/OnlineCaregivers/${caregiver.id}`, function (caregiverInfo) {
+                    const caregiverInfoDiv = $("#caregiverInfo");
+                    caregiverInfoDiv.empty();
+
+                    caregiverInfoDiv.append(`<p>负责组: ${caregiver.responsible_group_id}</p>`);
+                    caregiverInfoDiv.append(`<p>状态: 在线</p>`);
+                    // 添加其他护工信息字段
+
+                    $('#caregiverModal').modal('show');
+                    // });
+                });
+
+                onlineCaregiversList.append(`<li>${button.prop('outerHTML')}</li>`);
+            });
+        });
+    }
+
+    // 每隔1秒更新在线护工列表
+    setInterval(getOnlineCaregivers, 1000);
+
+    // 获取异常记录列表
+    function getMessageList() {
+        $.get("/Lrecords/getLRecords", function (data) {
+            const messageList = $("#messageList");
+            // 清空之前的内容
+            messageList.empty();
+            // 更新消息列表
+            data.forEach(Record => {
+                const time = Record.time.replace("T", " ");
+                messageList.append(`<div class="button1"><div><div>时间： ${time}</div><div>事件： ${Record.event}</div><div>位置： ${Record.place}</div></div></div>`);
+            });
+        });
+    }
+
+    // 每隔1秒更新消息列表
+    setInterval(getMessageList, 1000);
+</script>
+
+</body>
+</html>

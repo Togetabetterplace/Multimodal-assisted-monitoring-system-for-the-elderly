@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="SqlDialectMappings">
+    <file url="file://$PROJECT_DIR$/OHD_Project/src/main/java/com/ohd_project/ohd_project/mapper/CaregiverMapper.java" dialect="MySQL" />
+    <file url="file://$PROJECT_DIR$/OHD_Project/src/main/java/com/ohd_project/ohd_project/mapper/DetectorMapper.java" dialect="GenericSQL" />
+    <file url="file://$PROJECT_DIR$/OHD_Project/src/main/java/com/ohd_project/ohd_project/mapper/LongTimeRecordMapper.java" dialect="MySQL" />
+    <file url="file://$PROJECT_DIR$/OHD_Project/src/main/java/com/ohd_project/ohd_project/mapper/OnlineCaregiverMapper.java" dialect="MySQL" />
+    <file url="file://$PROJECT_DIR$/OHD_Project/src/main/java/com/ohd_project/ohd_project/mapper/PathMapper.java" dialect="GenericSQL" />
+    <file url="file://$PROJECT_DIR$/OHD_Project/src/main/java/com/ohd_project/ohd_project/mapper/ResGroupMapper.java" dialect="MySQL" />
+    <file url="file://$PROJECT_DIR$/OHD_Project/src/main/java/com/ohd_project/ohd_project/mapper/RoomMapper.java" dialect="MySQL" />
+    <file url="file://$PROJECT_DIR$/OHD_Project/src/main/java/com/ohd_project/ohd_project/mapper/UserMapper.java" dialect="MySQL" />
+    <file url="file://$PROJECT_DIR$/OHD_Project/src/main/resources/DB/migration/OHD_project.sql" dialect="MySQL" />
+    <file url="file://$PROJECT_DIR$/OHD_Project/src/main/resources/mapper/CaregiverMapper.xml" dialect="GenericSQL" />
+    <file url="file://$PROJECT_DIR$/OHD_Project/src/main/resources/mapper/DetectorMapper.xml" dialect="MySQL" />
+    <file url="file://$PROJECT_DIR$/OHD_Project/src/main/resources/mapper/LongTimeRecordMapper.xml" dialect="GenericSQL" />
+    <file url="file://$PROJECT_DIR$/OHD_Project/src/main/resources/mapper/OnlineCaregiverMapper.xml" dialect="GenericSQL" />
+    <file url="file://$PROJECT_DIR$/OHD_Project/src/main/resources/mapper/RecordMapper.xml" dialect="GenericSQL" />
+    <file url="file://$PROJECT_DIR$/OHD_Project/src/main/resources/mapper/UserMapper.xml" dialect="GenericSQL" />
+  </component>
+</project>

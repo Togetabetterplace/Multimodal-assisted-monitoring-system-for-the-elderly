@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en">
+<!--xmlns:th="http://www.thymeleaf.org"-->
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OHD HomePage</title>
+    <!--    <link rel="stylesheet" th:href="@{/css/style.css}" />-->
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+            font-family: "fangsong";
+        }
+
+        header {
+            background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+            url(https://pic4.zhimg.com/v2-bb86ab301afb08d9df2ba91cf3024f3b_r.jpg);
+            /*url(https://www.2008php.com/2011_Website_appreciate/2011-11-21/20111121023703.jpg);*/
+            height: 100vh;
+            background-size: cover;
+            background-position: center;
+        }
+
+        ul {
+            float: right;
+            list-style-type: none;
+            margin: 15px;
+        }
+
+        ul li {
+            display: inline-block;
+        }
+
+        ul li a {
+            text-decoration: none;
+            color: #fff;
+            padding: 5px 20px;
+            border: 1px solid transparent;
+            transition: .6s ease;
+            border-radius: 20px;
+        }
+
+        ul li a:hover {
+            background-color: #fff;
+            color: #000;
+        }
+
+        ul li.active a {
+            background-color: #fff;
+            color: #000;
+        }
+
+        .form {
+            margin-top: 30px;
+            margin-left: 60px;
+            margin-bottom: 10px;
+        }
+
+        .button {
+            position: absolute;
+            top: 320%;
+            left: 35%;
+            width: 100px;
+            transform: translate(-50%, -50%);
+            font-size: 20px;
+        }
+
+        .mainb {
+            overflow-y: scroll; /*只是y方向*/
+            line-height: 2;
+            font-size: 20px;
+            width: 550px;
+            height: 300px;
+            box-shadow: 0 5px 20px 0 #0f0b35;
+            background-color: #ffffff;
+            border-radius: 10px;
+            position: absolute;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
+            margin: auto;
+        }
+
+        .title h1 {
+            color: #fff;
+            font-size: 70px;
+            font-family: Century Gothic;
+        }
+
+        .main h2 {
+            color: #205fb2;
+            margin-left: 150px;
+        }
+
+        .form {
+            margin-top: 30px;
+            margin-left: 30px;
+        }
+
+        .form input {
+            /*line-height: 10;*/
+            width: 500px;
+            height: 25px;
+            border: 1px solid lightgray;
+            outline: none; /*输入内容时不显示边框*/
+        }
+
+        .form button {
+            width: 150px;
+            height: 30px;
+            color: white;
+            background-color: #fdac5b;
+            border-style: none;
+            border-radius: 5px;
+            font-size: 15px;
+            margin-top: 45px;
+            margin-left: 100px;
+            outline: none;
+            cursor: pointer; /*光标放到上面有小手*/
+        }
+    </style>
+</head>
+<body>
+<header>
+    <div class="main">
+        <ul>
+            <li class="active"><a href="/">首页</a></li>
+            <li><a href="https://blog.csdn.net" target="_blank"><span style="color: #ff965d;">C</span>SDN官网</a></li>
+            <li><a class="btn btn-primary btn-lg" href="/users/register" role="button"><span
+                    style="color:#ff885d">用户注册</span></a>
+            </li>
+            <li><a class="btn btn-primary btn-lg" href="/users/login" role="button"><span
+                    style="color:#fdae84">用户登陆</span></a>
+            </li>
+            <li><a class="btn btn-primary btn-lg" href="/caregivers/register" role="button"><span style="color:#ff885d">护工注册</span></a>
+            </li>
+            <li><a class="btn btn-primary btn-lg" href="/caregivers/login" role="button"><span style="color:#ed331a">护工登陆</span></a>
+            </li>
+        </ul>
+    </div>
+    <div class="mainb">
+
+
+        <div class="container mt-5">
+            <div class="row justify-content-center">
+                <div class="col-md-8">
+                    <div class="form">
+                        <div class="card-body">
+                            <h2 class="h5 mb-4">Create your account</h2>
+                            <form action="/users/register" method="post" onsubmit="registerUser()">
+                                <div class="form-group">
+                                    <label for="id">用户编号(User ID)</label>
+                                    <input type="text" class="form-control" id="id" name="id" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="name">用户姓名(Username)</label>
+                                    <input type="text" class="form-control" id="name" name="name" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="password">密码(Password)</label>
+                                    <input type="text" class="form-control" id="password" name="password" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="gender">性别(Gender)</label>
+                                    <input type="text" class="form-control" id="gender" name="gender" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="age">年龄(Age)</label>
+                                    <input type="number" class="form-control" id="age" name="age" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="phone">电话(Phone)</label>
+                                    <input type="text" class="form-control" id="phone" name="phone" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="emergencyContact">紧急联系方式(Emergency Contact)</label>
+                                    <input type="text" class="form-control" id="emergencyContact"
+                                           name="emergencyContact" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="emergencyContactPerson">紧急联系人(Emergency Contact Person)</label>
+                                    <input type="text" class="form-control" id="emergencyContactPerson"
+                                           name="emergencyContactPerson" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="groupId">组编号(Group ID)</label>
+                                    <input type="text" class="form-control" id="groupId" name="groupId" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="conditions">患病情况(Conditions)</label>
+                                    <input type="text" class="form-control" id="conditions" name="conditions" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="roomNumber">房间号(Room Number)</label>
+                                    <input type="text" class="form-control" id="roomNumber" name="roomNumber"
+                                           required>
+                                </div>
+                                <button type="button" class="button" onclick="registerUser()">Create account</button>
+                                <!--            <button type="button" class="btn btn-primary btn-block" onclick="loginUser()">Sign in</button>-->
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+    <!--    <div class="title">-->
+    <!--        <h1><span style="color: #6b6dfa;">OHD</span> Homepage</h1>-->
+    <!--    </div>-->
+
+    <script src="/static/js/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.11.8/umd/popper.min.js"></script>
+    <script src="/static/js/bootstrap.min.js"></script>
+</header>
+
+<script src="/static/js/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.11.8/umd/popper.min.js"></script>
+<script src="/static/js/distpicker.min.js"></script>
+
+<script>
+    function registerUser() {
+
+        // 获取表单数据
+        let formData = {
+            id: $("#id").val(),
+            name: $("#name").val(),
+            password: $("#password").val(),
+            gender: $("#gender").val(),
+            age: $("#age").val(),
+            phone: $("#phone").val(),
+            emergencyContact: $("#emergencyContact").val(),
+            emergencyContactPerson: $("#emergencyContactPerson").val(),
+            groupId: $("#groupId").val(),
+            conditions: $("#conditions").val(),
+            roomNumber: $("#roomNumber").val()
+        };
+
+        // 发起 AJAX POST 请求
+        $.ajax({
+            url: "/users/userregister",  // 请求地址
+            type: "POST",  // 请求方法
+            data: JSON.stringify(formData),  // 将 formData 对象转换为 JSON 格式的字符串作为请求体
+            contentType: "application/json", // 请求头 Content-Type
+            // dataType:"text",
+            success: function (data) {
+                // data = JSON.stringify(data)
+                if (data.code === 1001) {
+                    console.log(data.data)
+                    alert("注册成功");
+                    location.href = "/users/login";
+                } else {
+                    alert("注册失败");
+                    location.href = "/users/register";
+                }
+                // 处理成功响应或重定向到新页面
+            },
+            error: function (jqXHR, textStatus, errorThrown) {
+                console.error("Error:", textStatus, errorThrown);  // 输出错误信息到控制台
+                // 处理错误
+            }
+        });
+    }
+
+</script>
+
+</body>
+</html>

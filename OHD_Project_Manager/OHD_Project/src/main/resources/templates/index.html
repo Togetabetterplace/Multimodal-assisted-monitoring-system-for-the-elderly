@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OHD HomePage</title>
+    <!-- <link rel="stylesheet" type="text/css" href="css/style.css" /> -->
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+            font-family: "fangsong";
+        }
+
+        header {
+            background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+            url(https://pic4.zhimg.com/v2-bb86ab301afb08d9df2ba91cf3024f3b_r.jpg);
+            /*url(https://www.2008php.com/2011_Website_appreciate/2011-11-21/20111121023703.jpg);*/
+            height: 100vh;
+            background-size: cover;
+            background-position: center;
+        }
+
+        ul {
+            float: right;
+            list-style-type: none;
+            margin: 15px;
+        }
+
+        ul li {
+            display: inline-block;
+        }
+
+        ul li a {
+            text-decoration: none;
+            color: #fff;
+            padding: 5px 20px;
+            border: 1px solid transparent;
+            transition: .6s ease;
+            border-radius: 20px;
+        }
+
+        ul li a:hover {
+            background-color: #fff;
+            color: #000;
+        }
+
+        ul li.active a {
+            background-color: #fff;
+            color: #000;
+        }
+
+        .title {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        .title h1 {
+            color: #fff;
+            font-size: 70px;
+            font-family: Century Gothic;
+        }
+    </style>
+</head>
+<body>
+<header>
+    <div class="main">
+        <ul>
+            <li class="active"><a href="/">首页</a></li>
+            <li><a href="https://blog.csdn.net" target="_blank"><span style="color: #e18a4b;">C</span>SDN官网</a></li>
+            <li><a class="btn btn-primary btn-lg" href="/users/register" role="button"><span style="color:#d57938">用户注册</span></a>
+            </li>
+            <li><a class="btn btn-primary btn-lg" href="/users/login" role="button"><span style="color:#f36b18">用户登陆</span></a>
+            </li>
+            <li><a class="btn btn-primary btn-lg" href="/caregivers/register" role="button"><span style="color:#f87b44">护工注册</span></a>
+            </li>
+            <li><a class="btn btn-primary btn-lg" href="/caregivers/login" role="button"><span style="color:#ce2e2e">护工登陆</span></a>
+            </li>
+        </ul>
+    </div>
+    <div class="container text-center">
+        <div class="ink">
+            <h1 class="display-4">Home Page</h1>
+        </div>
+
+    </div>
+    <div class="title">
+        <h1><span style="color: #e85f4c;">OHD</span> Homepage</h1>
+    </div>
+</header>
+<!-- Bootstrap JS and jQuery -->
+<script src="../static/js/jquery.min.js"
+        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+        crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.11.8/umd/popper.min.js"
+        integrity="sha384-bO1grKLoOTol6W5F9AIlOs9q6ARPNtCTW1vpbzD4fiqFqFOE+adKXLFYFsp0q0Mr"
+        crossorigin="anonymous"></script>
+<script src="../static/js/distpicker.min.js"
+        integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8sh+Wy6n1g5hCQTH5I1Jkt6bNXENb3U5UAW+nJ"
+        crossorigin="anonymous"></script>
+<script>
+    // Add ink effect to the title
+    const title = document.querySelector('.ink');
+    title.addEventListener('click', function (e) {
+        // Create ripple element
+        const ripple = document.createElement('span');
+        ripple.classList.add('ink');
+        ripple.style.width = ripple.style.height = Math.max(title.clientWidth, title.clientHeight) + 'px';
+
+        // Get click coordinates
+        const rect = title.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
+
+        // Set ripple position
+        ripple.style.left = x + 'px';
+        ripple.style.top = y + 'px';
+
+        // Append to the container
+        title.appendChild(ripple);
+
+        // Remove ripple after animation
+        ripple.addEventListener('animationend', () => {
+            ripple.remove();
+        });
+    });
+</script>
+
+</body>
+</html>

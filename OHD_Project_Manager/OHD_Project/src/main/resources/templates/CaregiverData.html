@@ -1,0 +1,508 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OHD HomePage</title>
+    <!-- <link rel="stylesheet" type="text/css" href="css/style.css" /> -->
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+            font-family: "fangsong";
+        }
+
+        header {
+            background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+            url(https://pic4.zhimg.com/v2-bb86ab301afb08d9df2ba91cf3024f3b_r.jpg);
+            /*url(https://www.2008php.com/2011_Website_appreciate/2011-11-21/20111121023703.jpg);*/
+            height: 100vh;
+            background-size: cover;
+            background-position: center;
+        }
+
+        ul {
+            float: right;
+            list-style-type: none;
+            margin: 15px;
+        }
+
+        ul li {
+            display: inline-block;
+        }
+
+        ul li a {
+            text-decoration: none;
+            color: #fff;
+            padding: 5px 20px;
+            border: 1px solid transparent;
+            transition: .6s ease;
+            border-radius: 20px;
+        }
+
+        ul li a:hover {
+            background-color: #fff;
+            color: #000;
+        }
+
+        ul li.active a {
+            background-color: #fff;
+            color: #000;
+        }
+
+        .form {
+            margin-top: 30px;
+            margin-left: 60px;
+        }
+
+        /*.button1 {*/
+        /*    position: absolute;*/
+        /*    top: 50%;*/
+        /*    left: 50%;*/
+        /*    transform: translate(-50%, -50%);*/
+        /*    font-size: 20px;*/
+        /*}*/
+
+
+        .mainb {
+
+            line-height: 2;
+            font-size: 20px;
+            width: 500px;
+            height: 650px;
+            box-shadow: 0 5px 20px 0 #16133a;
+            background-color: #ffffff;
+            border-radius: 10px;
+            position: absolute;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
+            margin: auto;
+        }
+
+        .mainc {
+
+            overflow-y: scroll; /*只是y方向*/
+            line-height: 0.5;
+            font-size: 20px;
+            width: 225px;
+            height: 500px;
+            box-shadow: 0 5px 20px 0 #16133a;
+            /*background-color: #ff9b5d;*/
+            /*font: #2aab;*/
+            border-radius: 10px;
+            top: 6%;
+            left: 17%;
+
+            position: absolute;
+            margin: auto;
+            background-image: url("../static/img/Panel.png");
+        }
+
+        .maind {
+            overflow-y: scroll; /*只是y方向*/
+            line-height: 2;
+            font-size: 20px;
+            width: 300px;
+            height: 600px;
+            box-shadow: 0 5px 20px 0 #16133a;
+            background-color: #ffffff;
+            border-radius: 10px;
+            top: 6%;
+            left: 68%;
+            background-image: url("../static/img/Panel2.png");
+            position: absolute;
+            margin: auto;
+        }
+
+        .title h1 {
+            color: #fff;
+            font-size: 70px;
+            font-family: Century Gothic;
+        }
+
+        .main h2 {
+            color: #205fb2;
+            margin-left: 150px;
+        }
+
+        .form {
+            margin-top: 30px;
+            margin-left: 60px;
+        }
+
+        .form input {
+            /*line-height: 10;*/
+            width: 300px;
+            height: 25px;
+            border: 1px solid lightgray;
+            outline: none; /*输入内容时不显示边框*/
+        }
+
+        .form button {
+            width: 150px;
+            height: 30px;
+            color: white;
+            background-color: #f39b8b;
+            border-style: none;
+            border-radius: 5px;
+            font-size: 15px;
+            margin-top: 5px;
+            margin-left: 2px;
+            outline: none;
+            cursor: pointer; /*光标放到上面有小手*/
+
+        }
+
+        .button1 {
+            width: 220px;
+            height: 100px;
+            color: #f1e1e1;
+            background-color: #c7441d;
+            border-style: none;
+            border-radius: 5px;
+            font-size: 15px;
+            margin-top: 5px;
+            margin-right: 2px;
+            outline: none;
+            cursor: pointer; /*光标放到上面有小手*/
+
+        }
+
+        .f {
+            color: white;
+        }
+    </style>
+</head>
+<body>
+<header>
+    <div class="main">
+        <ul>
+            <li class="active"><a href="/">首页</a></li>
+            <li><a href="https://blog.csdn.net" target="_blank"><span style="color: #ffae5d;">C</span>SDN官网</a></li>
+            <li><a class="btn btn-primary btn-lg" href="/users/register" role="button"><span
+                    style="color:#ff885d">用户注册</span></a>
+            </li>
+            <li><a class="btn btn-primary btn-lg" href="/users/login" role="button"><span
+                    style="color:#fda484">用户登陆</span></a>
+            </li>
+            <li><a class="btn btn-primary btn-lg" href="/caregivers/register" role="button"><span style="color:#ff755d">护工注册</span></a>
+            </li>
+            <li><a class="btn btn-primary btn-lg" href="/caregivers/login" role="button"><span style="color:#fdb684">护工登陆</span></a>
+            </li>
+            <li><a class="btn btn-primary btn-lg" href="/users/login" role="button"><span
+                    style="color:#d15438">用户登出</span></a>
+            </li>
+        </ul>
+    </div>
+    <div class="container text-center">
+        <div class="ink">
+            <h1 class="display-4">Home Page</h1>
+        </div>
+
+    </div>
+    <!-- 在线列表板块 -->
+    <div class="mainc">
+        <div class="container mt-5">
+            <div class="row justify-content-center">
+                <div class="col-md-6">
+                    <div class="form">
+                        <div class="card-body">
+                            <div>
+                                <label class="f">在线列表</label>
+                            </div>
+                            <ul id="onlineCaregiversList"></ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div>
+        <div class="mainb">
+            <div class="container mt-5">
+                <div class="row justify-content-center">
+                    <div class="col-md-6">
+                        <div class="form">
+                            <div class="card-body">
+                                <h2>个人信息</h2>
+                                <div>
+                                    <div class="title">
+
+                                        <div id="userProfileContainer">
+                                            <!--                      <h2>User Profile</h2>-->
+                                            <p id="name"></p>
+                                            <button type="button" class="button" onclick="editCaregiver_name()">
+                                                编辑
+                                            </button>
+                                            <p id="gender"></p>
+                                            <button type="button" class="button" onclick="editCaregiver_gender()">
+                                                编辑
+                                            </button>
+                                            <p id="age"></p>
+                                            <button type="button" class="button" onclick="editCaregiver_age()">
+                                                编辑
+                                            </button>
+                                            <p id="phone"></p>
+                                            <button type="button" class="button" onclick="editCaregiver_phone()">
+                                                编辑
+                                            </button>
+                                            <p id="responsibleGroupId"></p>
+                                            <button type="button" class="button" onclick="editCaregiver_group()">
+                                                编辑
+                                            </button>
+
+
+                                        </div>
+                                    </div>
+                                    <div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div>
+        <div class="maind">
+            <div class="container mt-5">
+                <div class="row justify-content-center">
+                    <div class="col-md-6">
+                        <div class="form">
+                            <div class="card-body">
+                                <div>
+                                    <label class="f">消息列表</label>
+                                </div>
+                                <ul id="messageList"></ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+<!-- Bootstrap JS and jQuery -->
+<script src="/static/js/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.11.8/umd/popper.min.js"></script>
+<script src="/static/js/distpicker.min.js"></script>
+
+<!-- 在页面底部添加 -->
+<script>
+    function getOnlineCaregivers() {
+        $.get("/OnlineCaregivers/onlineList", function (data) {
+            const onlineCaregiversList = $("#onlineCaregiversList");
+            onlineCaregiversList.empty();
+
+            data.data.forEach(caregiver => {
+                const button = $(`<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#caregiverModal">${caregiver.name}</button>`);
+                button.click(function () {
+                    // $.get(`/OnlineCaregivers/${caregiver.id}`, function (caregiverInfo) {
+                    const caregiverInfoDiv = $("#caregiverInfo");
+                    caregiverInfoDiv.empty();
+
+                    caregiverInfoDiv.append(`<p>负责组: ${caregiver.responsible_group_id}</p>`);
+                    caregiverInfoDiv.append(`<p>状态: 在线</p>`);
+                    // 添加其他护工信息字段
+
+                    $('#caregiverModal').modal('show');
+                    // });
+                });
+
+                onlineCaregiversList.append(`<li>${button.prop('outerHTML')}</li>`);
+            });
+        });
+    }
+
+    // 每隔1秒更新在线护工列表
+    setInterval(getOnlineCaregivers, 1000);
+
+    // 获取异常记录列表
+    function getMessageList() {
+        $.get("/Lrecords/getLRecords", function (data) {
+            const messageList = $("#messageList");
+            // 清空之前的内容
+            messageList.empty();
+            // 更新消息列表
+            data.forEach(Record => {
+                const time = Record.time.replace("T", " ");
+                messageList.append(`<div class="button1"><div><div>时间： ${time}</div><div>事件： ${Record.event}</div><div>位置： ${Record.place}</div></div></div>`);
+            });
+        });
+    }
+
+    // 每隔1秒更新消息列表
+    setInterval(getMessageList, 1000);
+
+    // 从sessionStorage中获取用户信息
+    let storedCaregiver = sessionStorage.getItem("Caregiver");
+
+    if (storedCaregiver) {
+        // 将JSON字符串解析为JavaScript对象
+        let loggedInCaregiver = JSON.parse(storedCaregiver);
+
+        console.log(loggedInCaregiver)
+
+        // 获取用于显示用户信息的DOM元素
+        let nameElement = document.getElementById("name");
+        let genderElement = document.getElementById("gender");
+        let ageElement = document.getElementById("age");
+        let phoneElement = document.getElementById("phone");
+        let responsible_group_idElement = document.getElementById("responsibleGroupId");
+
+
+        // 将用户信息插入到DOM元素中
+        nameElement.textContent = "姓名: " + loggedInCaregiver.name;
+        genderElement.textContent = "性别: " + loggedInCaregiver.gender;
+        ageElement.textContent = "年龄: " + loggedInCaregiver.age;
+        phoneElement.textContent = "电话: " + loggedInCaregiver.phone;
+        responsible_group_idElement.textContent = "负责组编号: " + loggedInCaregiver.responsibleGroupId;
+
+    } else {
+        // 如果sessionStorage中没有用户信息，可能用户未登录或会话已过期
+        alert("用户未登录或会话已过期")
+        location.href = "/caregivers/caregiverlogin";
+    }
+    storedCaregiver = JSON.parse(storedCaregiver);
+    window.data = storedCaregiver;
+
+    function editCaregiver_name() {
+        let name = prompt("姓名：");
+        let formData = {
+            name: name,
+            caregiverId: window.data.caregiverId
+        };
+        $.ajax({
+            url: "/caregivers/edit",
+            type: "POST",
+            data: JSON.stringify(formData),
+            contentType: "application/json",
+            success: function (data) {
+                if (data.code === 1001) {
+                    console.log(data.data)
+                    alert("修改成功");
+                    location.href = "/caregivers/caregiverMain";
+                }
+            },
+            error: function (jqXHR, textStatus, errorThrown) {
+                console.error("Error:", textStatus, errorThrown);
+                // 处理错误
+            }
+        });
+
+    }
+
+    function editCaregiver_gender() {
+        let gender = prompt("性别：");
+        let formData = {
+            gender: gender,
+            caregiverId: window.data.caregiverId
+        };
+        $.ajax({
+            url: "/caregivers/edit",
+            type: "POST",
+            data: JSON.stringify(formData),
+            contentType: "application/json",
+            success: function (data) {
+                if (data.code === 1001) {
+                    console.log(data.data)
+                    alert("修改成功");
+                    location.href = "/caregivers/caregiverMain";
+                }
+            },
+            error: function (jqXHR, textStatus, errorThrown) {
+                console.error("Error:", textStatus, errorThrown);
+                // 处理错误
+            }
+        });
+    }
+
+    function editCaregiver_age() {
+        let age = prompt("年龄：");
+        let formData = {
+            age: age,
+            caregiverId: window.data.caregiverId
+        };
+        console.log(window.storedCaregiver);
+        $.ajax({
+            url: "/caregivers/edit",
+            type: "POST",
+            data: JSON.stringify(formData),
+            contentType: "application/json",
+            success: function (data) {
+                if (data.code === 1001) {
+                    console.log(data.data)
+                    alert("修改成功");
+                    location.href = "/caregivers/caregiverMain";
+                }
+            },
+            error: function (jqXHR, textStatus, errorThrown) {
+                console.error("Error:", textStatus, errorThrown);
+                // 处理错误
+            }
+        });
+
+    }
+
+    function editCaregiver_phone() {
+        let phone = prompt("电话：");
+        let formData = {
+            phone: phone,
+            caregiverId: window.data.caregiverId
+        };
+        $.ajax({
+            url: "/caregivers/edit",
+            type: "POST",
+            data: JSON.stringify(formData),
+            contentType: "application/json",
+            success: function (data) {
+                if (data.code === 1001) {
+                    console.log(data.data)
+                    alert("修改成功");
+                    location.href = "/caregivers/caregiverMain";
+                }
+            },
+            error: function (jqXHR, textStatus, errorThrown) {
+                console.error("Error:", textStatus, errorThrown);
+                // 处理错误
+            }
+        });
+
+    }
+
+    function editCaregiver_group() {
+        let group = prompt("负责组编号：");
+        let formData = {
+            group: group,
+            caregiverId: window.data.caregiverId
+        };
+        $.ajax({
+            url: "/caregivers/edit",
+            type: "POST",
+            data: JSON.stringify(formData),
+            contentType: "application/json",
+            success: function (data) {
+                if (data.code === 1001) {
+                    console.log(data.data)
+                    alert("修改成功");
+                    location.href = "/caregivers/caregiverMain";
+                }
+            },
+            error: function (jqXHR, textStatus, errorThrown) {
+                console.error("Error:", textStatus, errorThrown);
+                // 处理错误
+            }
+        });
+
+    }
+
+    // 每隔1秒更新消息列表
+    setInterval(getMessageList, 1000);
+</script>
+
+</body>
+</html>

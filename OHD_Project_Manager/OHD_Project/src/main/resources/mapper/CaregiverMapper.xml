@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- 在你的 XML 文件中 -->
+<mapper namespace="com.ohd_project.ohd_project.mapper.CaregiverMapper">
+    <select id="getCaregiverByName" resultType="com.ohd_project.ohd_project.entity.Caregiver">
+        <!-- 这里是实际的 SQL 查询语句 -->
+        SELECT * from caregiver WHERE name = #{name} and password = #{password};
+    </select>
+    <select id="findCaregiverById" resultType="com.ohd_project.ohd_project.entity.Caregiver">
+        SELECT * from caregiver WHERE caregiverId = #{caregiverId};
+    </select>
+</mapper>

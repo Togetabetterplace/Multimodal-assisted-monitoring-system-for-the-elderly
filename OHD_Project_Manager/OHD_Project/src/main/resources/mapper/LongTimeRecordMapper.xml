@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- 在你的 XML 文件中 -->
+<mapper namespace="com.ohd_project.ohd_project.mapper.LongTimeRecordMapper">
+    <select id="getLRecordsByCategory" resultType="com.ohd_project.ohd_project.entity.Long_time_record">
+        <!-- 这里是实际的 SQL 查询语句 -->
+        SELECT * FROM long_time_record WHERE category = #{category}
+    </select>
+    <select id="getAllLRecords" resultType="com.ohd_project.ohd_project.entity.Long_time_record">
+        <!-- 这里是实际的 SQL 查询语句 -->
+        SELECT * FROM long_time_record;
+    </select>
+</mapper>

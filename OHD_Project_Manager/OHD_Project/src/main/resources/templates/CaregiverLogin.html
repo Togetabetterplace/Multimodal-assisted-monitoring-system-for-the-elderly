@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OHD HomePage</title>
+    <!-- <link rel="stylesheet" type="text/css" href="css/style.css" /> -->
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+            font-family: "fangsong";
+        }
+
+        header {
+            background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+            url(https://pic4.zhimg.com/v2-bb86ab301afb08d9df2ba91cf3024f3b_r.jpg);
+            /*url(https://www.2008php.com/2011_Website_appreciate/2011-11-21/20111121023703.jpg);*/
+            height: 100vh;
+            background-size: cover;
+            background-position: center;
+        }
+        ul {
+            float: right;
+            list-style-type: none;
+            margin: 15px;
+        }
+
+        ul li {
+            display: inline-block;
+        }
+
+        ul li a {
+            text-decoration: none;
+            color: #fff;
+            padding: 5px 20px;
+            border: 1px solid transparent;
+            transition: .6s ease;
+            border-radius: 20px;
+        }
+
+        ul li a:hover {
+            background-color: #fff;
+            color: #000;
+        }
+
+        ul li.active a {
+            background-color: #fff;
+            color: #000;
+        }
+
+        .form {
+            margin-top: 30px;
+            margin-left: 60px;
+        }
+
+        .button {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 20px;
+        }
+
+        .mainb {
+            line-height: 2;
+            font-size: 20px;
+            width: 500px;
+            height: 300px;
+            box-shadow: 0 5px 20px 0 #16133a;
+            background-color: #ffffff;
+            border-radius: 10px;
+            position: absolute;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
+            margin: auto;
+        }
+
+        .title h1 {
+            color: #fff;
+            font-size: 70px;
+            font-family: Century Gothic;
+        }
+
+        .main h2 {
+            color: #205fb2;
+            margin-left: 150px;
+        }
+
+        .form {
+            margin-top: 30px;
+            margin-left: 60px;
+        }
+
+        .form input {
+            /*line-height: 10;*/
+            width: 300px;
+            height: 25px;
+            border: 1px solid lightgray;
+            outline: none; /*输入内容时不显示边框*/
+        }
+
+        .form button {
+            width: 150px;
+            height: 30px;
+            color: white;
+            background-color: #fd815b;
+            border-style: none;
+            border-radius: 5px;
+            font-size: 15px;
+            margin-top: 45px;
+            margin-left: 100px;
+            outline: none;
+            cursor: pointer; /*光标放到上面有小手*/
+        }
+    </style>
+</head>
+<body>
+<header>
+    <div class="main">
+        <ul>
+            <li class="active"><a href="/">首页</a></li>
+            <li><a href="https://blog.csdn.net" target="_blank"><span style="color: #ff965d;">C</span>SDN官网</a></li>
+            <li><a class="btn btn-primary btn-lg" href="/users/register" role="button"><span
+                    style="color:#ff705d">用户注册</span></a>
+            </li>
+            <li><a class="btn btn-primary btn-lg" href="/users/login" role="button"><span
+                    style="color:#fdb684">用户登陆</span></a>
+            </li>
+            <li><a class="btn btn-primary btn-lg" href="/caregivers/register" role="button"><span style="color:#ff7b5d">护工注册</span></a>
+            </li>
+            <li><a class="btn btn-primary btn-lg" href="/caregivers/login" role="button"><span style="color:#f4604c">护工登陆</span></a>
+            </li>
+        </ul>
+    </div>
+    <div class="mainb">
+        <div class="container mt-5">
+            <div class="row justify-content-center">
+                <div class="col-md-6">
+                    <div class="form">
+                        <div class="card-body">
+                            <h2>Sign in to your account</h2>
+                            <!--                    <form id="loginForm">-->
+                            <form action="/caregivers/login" method="post" onsubmit="loginCaregiver()">
+                                <div class="form-group">
+                                    <label for="name">姓名:</label>
+                                    <input type="text" class="form-control" id="name" name="name" required>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="password">密码:</label>
+                                    <input type="password" class="form-control" id="password" name="password" required>
+                                </div>
+                                <div class="form-group">
+                                    <button type="button" class="button" onclick="loginCaregiver()">Sign in</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="/static/js/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.11.8/umd/popper.min.js"></script>
+
+    <script src="/static/js/bootstrap.min.js"></script>
+</header>
+
+<!-- Bootstrap JS and jQuery -->
+<script src="/static/js/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.11.8/umd/popper.min.js"></script>
+<script src="/static/js/distpicker.min.js"></script>
+<script>
+    // Add ink effect to the title
+    const title = document.querySelector('.ink');
+    title.addEventListener('click', function (e) {
+        // Create ripple element
+        const ripple = document.createElement('span');
+        ripple.classList.add('ink');
+        ripple.style.width = ripple.style.height = Math.max(title.clientWidth, title.clientHeight) + 'px';
+
+        // Get click coordinates
+        const rect = title.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
+
+        // Set ripple position
+        ripple.style.left = x + 'px';
+        ripple.style.top = y + 'px';
+
+        // Append to the container
+        title.appendChild(ripple);
+
+        // Remove ripple after animation
+        ripple.addEventListener('animationend', () => {
+            ripple.remove();
+        });
+    });
+
+</script>
+
+<script>
+    function loginCaregiver() {
+        let formData = {
+            name: $("#name").val(),
+            password: $("#password").val(),
+        };
+
+        $.ajax({
+            url: "/caregivers/caregiverlogin",
+            type: "POST",
+            data: JSON.stringify(formData),
+            contentType: "application/json",
+            success: function (data) {
+                if (data.code === 1001) {
+                    console.log(data.data)
+                    alert("登陆成功");
+                    sessionStorage.setItem("Caregiver", JSON.stringify(data.data))
+                    // 跳转到指定的 URL 地址
+                    location.href = "/caregivers/caregiverMain";
+                } else {
+                    if (data.code === 1002) {
+                        // 跳转到指定的 URL 地 址
+                        alert("密码错误");
+                        location.href = "/";
+                    } else {
+                        alert("用户不存在");
+                        // 跳转到指定的 URL 地址
+                        location.href = "/";
+                    }
+                }
+            },
+            error: function (jqXHR, textStatus, errorThrown) {
+                console.error("Error:", textStatus, errorThrown);
+                // 处理错误
+            }
+        });
+    }
+
+</script>
+
+</body>
+</html>
