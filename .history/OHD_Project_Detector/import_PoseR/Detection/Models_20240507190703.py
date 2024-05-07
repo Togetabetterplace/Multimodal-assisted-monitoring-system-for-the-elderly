@@ -251,9 +251,12 @@ class YOLOLayer(nn.Module):
 
 
 class Darknet(nn.Module):
-    """
-    YOLOv3模型类，继承自nn.Module，用于定义YOLOv3模型的架构。
-    """
+    """YOLOv3 object detection model"""
+    class Darknet(nn.Module):
+        """
+        YOLOv3模型类，继承自nn.Module，用于定义YOLOv3模型的架构。
+        """
+
     def __init__(self, config_path, img_size=416):
         """
         初始化YOLOv3模型，使用给定的配置文件和图像尺寸。
@@ -274,44 +277,23 @@ class Darknet(nn.Module):
         self.header_info = np.array([0, 0, 0, self.seen, 0], dtype=np.int32)  # 用于存储模型头部信息的数组
 
     def forward(self, x, targets=None):
-        """
-        前向传播函数，将输入数据x通过YOLOv3模型，得到模型的输出。
-
-        Parameters:
-        - x (torch.Tensor): 输入数据，形状为(N, C, H, W)，其中N为批次大小，C为通道数，H和W为图像的高和宽。
-        - targets (torch.Tensor, optional): 目标数据，形状为(N, T, 6)，其中N为批次大小，T为每张图片中的目标数，6为每一个目标的属性数目。
-
-        Returns:
-        - yolo_outputs (torch.Tensor): 模型的输出，形状为(N, M, 85)，其中N为批次大小，M为每张图片中的检测框数目，85为每一个检测框的属性数目。
-        - total_loss (torch.Tensor): 损失函数的输出，形状为(1,)，表示模型的损失值。
-
-        Note:
-        - 如果没有提供目标数据，函数将返回模型的输出，不计算损失。
-        """
         img_dim = x.shape[2]
         loss = 0
         layer_outputs, yolo_outputs = [], []
         for i, (module_def, module) in enumerate(zip(self.module_defs, self.module_list)):
             if module_def["type"] in ["convolutional", "upsample", "maxpool"]:
-                # 应用卷积、上采样或最大池化层
                 x = module(x)
             elif module_def["type"] == "route":
-                # 路由层，将多个层的特征图拼接在一起
                 x = torch.cat([layer_outputs[int(layer_i)] for layer_i in module_def["layers"].split(",")], 1)
             elif module_def["type"] == "shortcut":
-                # 捷径层，将上一层的特征图与指定层的特征图相加
                 layer_i = int(module_def["from"])
                 x = layer_outputs[-1] + layer_outputs[layer_i]
             elif module_def["type"] == "yolo":
-                # YOLO层，应用YOLO检测算法
                 x, layer_loss = module[0](x, targets, img_dim)
                 loss += layer_loss
                 yolo_outputs.append(x)
             layer_outputs.append(x)
-        # 合并所有YOLO层的输出，并将其转换为CPU上的数据
         yolo_outputs = to_cpu(torch.cat(yolo_outputs, 1))
-        # 如果没有提供目标数据，返回模型的输出
-        # 否则，返回模型的输出和损失
         return yolo_outputs if targets is None else (loss, yolo_outputs)
 
     def load_darknet_weights(self, weights_path):

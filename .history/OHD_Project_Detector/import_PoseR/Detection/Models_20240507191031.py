@@ -251,27 +251,27 @@ class YOLOLayer(nn.Module):
 
 
 class Darknet(nn.Module):
-    """
-    YOLOv3模型类，继承自nn.Module，用于定义YOLOv3模型的架构。
-    """
-    def __init__(self, config_path, img_size=416):
         """
-        初始化YOLOv3模型，使用给定的配置文件和图像尺寸。
-
-        参数：
-        - config_path (str)：YOLOv3模型的配置文件路径。
-        - img_size (int, optional)：输入图像的尺寸，默认为416。
-
-        返回：
-        - None
+        YOLOv3模型类，继承自nn.Module，用于定义YOLOv3模型的架构。
         """
-        super(Darknet, self).__init__()
-        self.module_defs = parse_model_config(config_path)  # 解析模型配置文件
-        self.hyperparams, self.module_list = create_modules(self.module_defs)  # 创建模型模块
-        self.yolo_layers = [layer[0] for layer in self.module_list if hasattr(layer[0], "metrics")]  # 获取包含度量指标的YOLO层
-        self.img_size = img_size  # 存储图像尺寸
-        self.seen = 0  # 记录模型训练时所见的图像数量
-        self.header_info = np.array([0, 0, 0, self.seen, 0], dtype=np.int32)  # 用于存储模型头部信息的数组
+        def __init__(self, config_path, img_size=416):
+            """
+            初始化YOLOv3模型，使用给定的配置文件和图像尺寸。
+
+            参数：
+            - config_path (str)：YOLOv3模型的配置文件路径。
+            - img_size (int, optional)：输入图像的尺寸，默认为416。
+
+            返回：
+            - None
+            """
+            super(Darknet, self).__init__()
+            self.module_defs = parse_model_config(config_path)  # 解析模型配置文件
+            self.hyperparams, self.module_list = create_modules(self.module_defs)  # 创建模型模块
+            self.yolo_layers = [layer[0] for layer in self.module_list if hasattr(layer[0], "metrics")]  # 获取包含度量指标的YOLO层
+            self.img_size = img_size  # 存储图像尺寸
+            self.seen = 0  # 记录模型训练时所见的图像数量
+            self.header_info = np.array([0, 0, 0, self.seen, 0], dtype=np.int32)  # 用于存储模型头部信息的数组
 
     def forward(self, x, targets=None):
         """

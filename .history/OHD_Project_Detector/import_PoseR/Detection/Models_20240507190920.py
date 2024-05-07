@@ -251,9 +251,11 @@ class YOLOLayer(nn.Module):
 
 
 class Darknet(nn.Module):
-    """
-    YOLOv3模型类，继承自nn.Module，用于定义YOLOv3模型的架构。
-    """
+    """YOLOv3 object detection model"""
+    class Darknet(nn.Module):
+        """
+        YOLOv3模型类，继承自nn.Module，用于定义YOLOv3模型的架构。
+        """
     def __init__(self, config_path, img_size=416):
         """
         初始化YOLOv3模型，使用给定的配置文件和图像尺寸。

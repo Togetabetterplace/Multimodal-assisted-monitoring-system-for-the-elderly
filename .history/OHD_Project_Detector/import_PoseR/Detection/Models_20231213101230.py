@@ -8,102 +8,71 @@ from .Utils import build_targets, to_cpu, parse_model_config
 
 def create_modules(module_defs):
     """
-    基于 Darknet 配置文件中的模块定义，构建模块列表。
-
-    参数:
-    module_defs (list): Darknet 配置文件中的模块定义列表。
-
-    返回:
-    tuple: 包含超参数和模块列表的元组。
+    Constructs module list of layer blocks from module configuration in module_defs
     """
-    # 读取超参数
     hyperparams = module_defs.pop(0)
-    # 初始输出通道数
     output_filters = [int(hyperparams["channels"])]  # [3]
-    # 创建模块列表
     module_list = nn.ModuleList()
-
-    # 迭代模块定义列表
     for module_i, module_def in enumerate(module_defs):
-        # 创建空的序列模块
         modules = nn.Sequential()
 
-        # 如果模块类型是卷积层
         if module_def["type"] == "convolutional":
-            bn = int(module_def["batch_normalize"])  # 是否使用批归一化
-            filters = int(module_def["filters"])  # 输出通道数
-            kernel_size = int(module_def["size"])  # 卷积核大小
-            pad = (kernel_size - 1) // 2  # 填充大小
-            # 添加卷积层
+            bn = int(module_def["batch_normalize"])
+            filters = int(module_def["filters"])
+            kernel_size = int(module_def["size"])
+            pad = (kernel_size - 1) // 2
             modules.add_module(
                 f"conv_{module_i}",
                 nn.Conv2d(
-                    in_channels=output_filters[-1],  # 输入通道数
-                    out_channels=filters,  # 输出通道数
-                    kernel_size=kernel_size,  # 卷积核大小
-                    stride=int(module_def["stride"]),  # 步长
-                    padding=pad,  # 填充大小
-                    bias=not bn,  # 是否使用偏置
+                    in_channels=output_filters[-1],
+                    out_channels=filters,
+                    kernel_size=kernel_size,
+                    stride=int(module_def["stride"]),
+                    padding=pad,
+                    bias=not bn,
                 ),
             )
-            # 如果使用批归一化
             if bn:
-                # 添加批归一化层
                 modules.add_module(f"batch_norm_{module_i}", nn.BatchNorm2d(filters, momentum=0.9, eps=1e-5))
-            # 如果使用 LeakyReLU 激活函数
             if module_def["activation"] == "leaky":
-                # 添加 LeakyReLU 激活函数
                 modules.add_module(f"leaky_{module_i}", nn.LeakyReLU(0.1))
 
-        # 如果模块类型是最大池化层
         elif module_def["type"] == "maxpool":
-            kernel_size = int(module_def["size"])  # 卷积核大小
-            stride = int(module_def["stride"])  # 步长
-            # 如果卷积核大小为 2 且步长为 1，添加零填充
+            kernel_size = int(module_def["size"])
+            stride = int(module_def["stride"])
             if kernel_size == 2 and stride == 1:
                 modules.add_module(f"_debug_padding_{module_i}", nn.ZeroPad2d((0, 1, 0, 1)))
-            # 添加最大池化层
             maxpool = nn.MaxPool2d(kernel_size=kernel_size, stride=stride, padding=int((kernel_size - 1) // 2))
             modules.add_module(f"maxpool_{module_i}", maxpool)
 
-        # 如果模块类型是上采样层
         elif module_def["type"] == "upsample":
-            # 添加上采样层
             upsample = Upsample(scale_factor=int(module_def["stride"]), mode="nearest")
             modules.add_module(f"upsample_{module_i}", upsample)
 
-        # 如果模块类型是路由层
         elif module_def["type"] == "route":
-            layers = [int(x) for x in module_def["layers"].split(",")]  # 路由的层
-            filters = sum([output_filters[1:][i] for i in layers])  # 输出通道数
-            # 添加路由层
+            layers = [int(x) for x in module_def["layers"].split(",")]
+            filters = sum([output_filters[1:][i] for i in layers])
             modules.add_module(f"route_{module_i}", EmptyLayer())
 
-        # 如果模块类型是捷径层
         elif module_def["type"] == "shortcut":
-            filters = output_filters[1:][int(module_def["from"])]  # 输出通道数
-            # 添加捷径层
+            filters = output_filters[1:][int(module_def["from"])]
             modules.add_module(f"shortcut_{module_i}", EmptyLayer())
 
-        # 如果模块类型是 YOLO 层
         elif module_def["type"] == "yolo":
-            anchor_idxs = [int(x) for x in module_def["mask"].split(",")]  # 锚点的索引
-            # 读取锚点
+            anchor_idxs = [int(x) for x in module_def["mask"].split(",")]
+            # Extract anchors
             anchors = [int(x) for x in module_def["anchors"].split(",")]
             anchors = [(anchors[i], anchors[i + 1]) for i in range(0, len(anchors), 2)]
-            anchors = [anchors[i] for i in anchor_idxs]  # 选取需要的锚点
-            num_classes = int(module_def["classes"])  # 类别数
-            img_size = int(hyperparams["height"])  # 图像尺寸
-            # 添加 YOLO 层
+            anchors = [anchors[i] for i in anchor_idxs]
+            num_classes = int(module_def["classes"])
+            img_size = int(hyperparams["height"])
+            # Define detection layer
             yolo_layer = YOLOLayer(anchors, num_classes, img_size)
             modules.add_module(f"yolo_{module_i}", yolo_layer)
-
-        # 添加模块到模块列表
+        # Register module list and number of output filters
         module_list.append(modules)
-        # 更新输出通道数
         output_filters.append(filters)
 
-    # 返回超参数和模块列表
     return hyperparams, module_list
 
 
@@ -251,67 +220,34 @@ class YOLOLayer(nn.Module):
 
 
 class Darknet(nn.Module):
-    """
-    YOLOv3模型类，继承自nn.Module，用于定义YOLOv3模型的架构。
-    """
+    """YOLOv3 object detection model"""
     def __init__(self, config_path, img_size=416):
-        """
-        初始化YOLOv3模型，使用给定的配置文件和图像尺寸。
-
-        参数：
-        - config_path (str)：YOLOv3模型的配置文件路径。
-        - img_size (int, optional)：输入图像的尺寸，默认为416。
-
-        返回：
-        - None
-        """
         super(Darknet, self).__init__()
-        self.module_defs = parse_model_config(config_path)  # 解析模型配置文件
-        self.hyperparams, self.module_list = create_modules(self.module_defs)  # 创建模型模块
-        self.yolo_layers = [layer[0] for layer in self.module_list if hasattr(layer[0], "metrics")]  # 获取包含度量指标的YOLO层
-        self.img_size = img_size  # 存储图像尺寸
-        self.seen = 0  # 记录模型训练时所见的图像数量
-        self.header_info = np.array([0, 0, 0, self.seen, 0], dtype=np.int32)  # 用于存储模型头部信息的数组
+        self.module_defs = parse_model_config(config_path)
+        self.hyperparams, self.module_list = create_modules(self.module_defs)
+        self.yolo_layers = [layer[0] for layer in self.module_list if hasattr(layer[0], "metrics")]
+        self.img_size = img_size
+        self.seen = 0
+        self.header_info = np.array([0, 0, 0, self.seen, 0], dtype=np.int32)
 
     def forward(self, x, targets=None):
-        """
-        前向传播函数，将输入数据x通过YOLOv3模型，得到模型的输出。
-
-        Parameters:
-        - x (torch.Tensor): 输入数据，形状为(N, C, H, W)，其中N为批次大小，C为通道数，H和W为图像的高和宽。
-        - targets (torch.Tensor, optional): 目标数据，形状为(N, T, 6)，其中N为批次大小，T为每张图片中的目标数，6为每一个目标的属性数目。
-
-        Returns:
-        - yolo_outputs (torch.Tensor): 模型的输出，形状为(N, M, 85)，其中N为批次大小，M为每张图片中的检测框数目，85为每一个检测框的属性数目。
-        - total_loss (torch.Tensor): 损失函数的输出，形状为(1,)，表示模型的损失值。
-
-        Note:
-        - 如果没有提供目标数据，函数将返回模型的输出，不计算损失。
-        """
         img_dim = x.shape[2]
         loss = 0
         layer_outputs, yolo_outputs = [], []
         for i, (module_def, module) in enumerate(zip(self.module_defs, self.module_list)):
             if module_def["type"] in ["convolutional", "upsample", "maxpool"]:
-                # 应用卷积、上采样或最大池化层
                 x = module(x)
             elif module_def["type"] == "route":
-                # 路由层，将多个层的特征图拼接在一起
                 x = torch.cat([layer_outputs[int(layer_i)] for layer_i in module_def["layers"].split(",")], 1)
             elif module_def["type"] == "shortcut":
-                # 捷径层，将上一层的特征图与指定层的特征图相加
                 layer_i = int(module_def["from"])
                 x = layer_outputs[-1] + layer_outputs[layer_i]
             elif module_def["type"] == "yolo":
-                # YOLO层，应用YOLO检测算法
                 x, layer_loss = module[0](x, targets, img_dim)
                 loss += layer_loss
                 yolo_outputs.append(x)
             layer_outputs.append(x)
-        # 合并所有YOLO层的输出，并将其转换为CPU上的数据
         yolo_outputs = to_cpu(torch.cat(yolo_outputs, 1))
-        # 如果没有提供目标数据，返回模型的输出
-        # 否则，返回模型的输出和损失
         return yolo_outputs if targets is None else (loss, yolo_outputs)
 
     def load_darknet_weights(self, weights_path):
