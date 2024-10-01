@@ -1,4 +1,4 @@
-![image](https://github.com/user-attachments/assets/2c9d012a-7012-4961-a458-6a7b2767ef95)# E-Detect：Multimodal-assisted-monitoring-system-for-the-elderly
+# Multimodal-assisted-monitoring-system-for-the-elderly
 
 codes are in master branch.
 
@@ -33,6 +33,12 @@ codes are in master branch.
 - 将Java端写入的新增检测器添加并运行
 - 删除检测器
 
+![image](https://github.com/user-attachments/assets/52182141-e8bd-4fb3-a091-6f87e93bae60)
+
+![image](https://github.com/user-attachments/assets/71a8d42a-8ee6-455e-ab42-f63bcc7bf875)
+
+检测器运行效果
+
 
 ### 前后端管理系统
 
@@ -53,23 +59,29 @@ Java端(OHD_Project_Manager)
 
 
 ![image](https://github.com/user-attachments/assets/f5f5f720-f503-49c0-9153-d418d0d57e60)
+
 注册界面
 
 
 ![image](https://github.com/user-attachments/assets/85d2e67a-d2ac-481d-97a5-92eb1b000fae)
+
 登录界面
 
 ![image](https://github.com/user-attachments/assets/a57d0b56-3a73-411b-a1e3-fb26e669e26f)
+
 用户主面板（左侧为在线护工，右侧为异常记录消息栏
 
 
 ![image](https://github.com/user-attachments/assets/ee54e46e-935a-4233-bc48-003145d6e8c5)
+
 功能分别为：查看个人信息，添加删除检测器，可视化数据查看，设置日志保存位置
 
 ![image](https://github.com/user-attachments/assets/95e7606e-b0c7-442a-ba33-22c46b088857)
+
 用户个人信息查看
 
 ![image](https://github.com/user-attachments/assets/e6d68099-c367-488b-a2cf-64c8c1e5d625)
+
 生成异常记录日志
 
 
