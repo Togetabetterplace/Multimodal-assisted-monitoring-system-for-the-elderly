@@ -1,4 +1,4 @@
-# E-Detect：Multimodal-assisted-monitoring-system-for-the-elderly
+![image](https://github.com/user-attachments/assets/2c9d012a-7012-4961-a458-6a7b2767ef95)# E-Detect：Multimodal-assisted-monitoring-system-for-the-elderly
 
 codes are in master branch.
 
@@ -6,6 +6,9 @@ codes are in master branch.
 
 我们当然希望老年人能24小时获得实时的监护，有异常能得到及时的反馈，但事实上受限于人力物力，这样美好的愿景仍未能实现。倘若有一双眼睛能不知疲倦地实时监视老人的行为，敏锐地捕捉到异常状况，并及时提醒护工，甚至将这些数据整合统计，以供医护人员进一步的分析与调整，那么这样的愿望便能有希望成为现实。我们团队便想做出这样的一双“慧眼”——即设计出一套针对失能与半失能老年人的多模态辅助监护系统。
 
+
+![image](https://github.com/user-attachments/assets/cf79a9e5-1c5b-4f20-b00a-8237975f1f53)
+总设计图
 
 ### 基于AlphaPose，Xception，ECAPA-tdnn的多模态检测器
 
@@ -46,6 +49,28 @@ Java端(OHD_Project_Manager)
 - 插入报警记录(包括长期和短期记录)
 - 添加删除检测器
 
+---
+
+
+![image](https://github.com/user-attachments/assets/f5f5f720-f503-49c0-9153-d418d0d57e60)
+注册界面
+
+
+![image](https://github.com/user-attachments/assets/85d2e67a-d2ac-481d-97a5-92eb1b000fae)
+登录界面
+
+![image](https://github.com/user-attachments/assets/a57d0b56-3a73-411b-a1e3-fb26e669e26f)
+用户主面板（左侧为在线护工，右侧为异常记录消息栏
+
+
+![image](https://github.com/user-attachments/assets/ee54e46e-935a-4233-bc48-003145d6e8c5)
+功能分别为：查看个人信息，添加删除检测器，可视化数据查看，设置日志保存位置
+
+![image](https://github.com/user-attachments/assets/95e7606e-b0c7-442a-ba33-22c46b088857)
+用户个人信息查看
+
+![image](https://github.com/user-attachments/assets/e6d68099-c367-488b-a2cf-64c8c1e5d625)
+生成异常记录日志
 
 
 ### 实地检测
