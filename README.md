@@ -33,7 +33,8 @@ codes are in master branch.
 - 将Java端写入的新增检测器添加并运行
 - 删除检测器
 
-![image](https://github.com/user-attachments/assets/52182141-e8bd-4fb3-a091-6f87e93bae60)
+![image](https://github.com/user-attachments/assets/d4897838-fde9-4f76-9c50-4e8fe6d40b23)
+
 
 ![image](https://github.com/user-attachments/assets/71a8d42a-8ee6-455e-ab42-f63bcc7bf875)
 
